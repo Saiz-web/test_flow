@@ -18,5 +18,4 @@ jobs:
         run: |
           echo "${{ vars.MY_KEY }}" > key.pem
           chmod 600 key.pem
-          ssh-keyscan -H 89.169.133.122 >> ~/.ssh/known_hosts
           ssh -i key.pem dm@89.169.133.122 "echo Successfully connected to a remote server"
