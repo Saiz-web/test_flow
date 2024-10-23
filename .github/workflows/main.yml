@@ -16,11 +16,6 @@ jobs:
 
       - name: Setup SSH
         run: |
-          touch MY_KEY_FL
-          echo $MY_KEY > MY_KEY_FL
-          ssh -i MY_KEY_FL $USER_NAME@$HOST_IP "echo Successfully connected to remote server"
-        env:
-          MY_KEY: ${{ vars.MY_KEY }}
-          USER_NAME: ${{ vars.USER_NAME }}
-          HOST_IP: ${{ vars.HOST_IP }}
-
+          echo "${{ vars.MY_KEY }}" > key.pem
+          chmod 600 key.pem
+          ssh -i key.pem ${{ vars.USER_NAME }}@${{ vars.HOST_IP }} "echo Successfully connected to a remote server"
