@@ -7,10 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    
+    steps: 
     - name: Set up SSH
       uses: webfactory/ssh-agent@v2
       with:
