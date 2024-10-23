@@ -16,13 +16,12 @@ jobs:
 
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh/
-          echo "$MY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan $HOST_IP >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa $USER_NAME@$HOST_IP "echo Successfully connected to remote server"
+          mkdir -p $HOME/.ssh
+          echo "${{ secrets.MY_KEY }}" > $HOME/.ssh/id_rsa
+          chmod 600 $HOME/.ssh/id_rsa
+          ssh-keyscan -H $HOST_IP >> $HOME/.ssh/known_hosts
+          ssh -i $HOME/.ssh/id_rsa $USER_NAME@$HOST_IP "echo Successfully connected to remote server"
         env:
           MY_KEY: ${{ secrets.MY_KEY }}
           USER_NAME: ${{ secrets.USER_NAME }}
           HOST_IP: ${{ secrets.HOST_IP }}
-
