@@ -16,7 +16,7 @@ jobs:
           ssh-private-key: ${{ secrets.MY_KEY }}
       - name: Setup SSH
         env: 
-          USERNAME: ${{ vars.USER_NAME }}
+          USER_NAME: ${{ vars.USER_NAME }}
           HOST_IP: ${{ vars.HOST_IP }}
         run: |
           ssh -o "StrictHostKeyChecking no" $USER_NAME@$HOST_IP "pwd"
