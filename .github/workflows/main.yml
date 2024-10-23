@@ -1,0 +1,21 @@
+name: SSH Workflow
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v2
+      with:
+        ssh-private-key: ${{ secrets.MY_KEY }}
+        known_hosts: '89.169.133.122'
+    
+    - name: Connect via SSH and print pwd
+      run: ssh -T dm@89.169.133.122 'pwd'
