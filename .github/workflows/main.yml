@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: uses: webfactory/ssh-agent@v0.9.0
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
-
-         ssh-private-key: ${{ secrets.MY_KEY }}
-
+          ssh-private-key: ${{ secrets.MY_KEY }}
       - name: Setup SSH
         env: 
-        USERNAME: ${{ vars.USER_NAME }}
-        HOST_IP: ${{ vars.HOST_IP }}
+          USERNAME: ${{ vars.USER_NAME }}
+          HOST_IP: ${{ vars.HOST_IP }}
         run: |
           ssh -o "StrictHostKeyChecking no" $USER_NAME@$HOST_IP "pwd"
