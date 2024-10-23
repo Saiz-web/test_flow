@@ -19,6 +19,5 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.MY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ${{ variables.HOST_IP }} >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa ${{ variables.USER_NAME }}@${{ variables.HOST_IP }} "echo Successfully connected to remote server"
-
+          ssh-keyscan ${{ env.HOST_IP }} >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa ${{ secrets.USER_NAME }}@${{ env.HOST_IP }} "echo Successfully connected to remote server"
