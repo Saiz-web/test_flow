@@ -21,5 +21,7 @@ jobs:
         run: |
           ssh -o "StrictHostKeyChecking no" $USER_NAME@$HOST_IP "pwd"
       - name: List files
-        run: |
-          ssh -o "StrictHostKeyChecking no" $USER_NAME@$HOST_IP "ls -l"
+        env: 
+          USER_NAME: ${{ vars.USER_NAME }}
+          HOST_IP: ${{ vars.HOST_IP }}
+        run: ssh -o "StrictHostKeyChecking no" $USER_NAME@$HOST_IP "ls -l"
